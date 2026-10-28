@@ -1,0 +1,67 @@
+name: Android APK
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'android/**'
+      - '.github/workflows/android.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'android/**'
+      - '.github/workflows/android.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Configure app
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          APP_KEY: ${{ secrets.APP_KEY }}
+        run: |
+          if [ -z "$API_BASE_URL" ]; then echo "::error::Set repository secret API_BASE_URL"; exit 1; fi
+          if [ -z "$APP_KEY" ]; then echo "::error::Set repository secret APP_KEY"; exit 1; fi
+          {
+            echo "org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8"
+            echo "android.useAndroidX=true"
+            echo "android.nonTransitiveRClass=true"
+            echo "kotlin.code.style=official"
+            printf 'API_BASE_URL=%s\n' "$API_BASE_URL"
+            printf 'APP_KEY=%s\n' "$APP_KEY"
+          } > gradle.properties
+
+      - name: Build debug APK
+        run: gradle --no-daemon --stacktrace assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: satskeeper-debug-apk
+          path: android/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 14
