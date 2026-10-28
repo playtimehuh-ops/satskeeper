@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>SatsKeeper Admin</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>SatsKeeper <span>admin</span></h1>
+    <nav role="tablist">
+      <button class="tab active" data-tab="overview" role="tab">Overview</button>
+      <button class="tab" data-tab="users" role="tab">Users</button>
+      <button class="tab" data-tab="redemptions" role="tab">Redemptions</button>
+    </nav>
+  </header>
+
+  <main>
+    <div id="error" class="banner error" hidden></div>
+
+    <section id="overview" class="panel">
+      <div id="warning" class="banner danger" hidden>
+        Warning: gift cards paid exceed revenue in. You are paying out more than the SDK paid you.
+      </div>
+      <h2>Economics</h2>
+      <div class="cards" id="economics">
+        <div class="card"><div class="label">Revenue in</div><div class="value" id="m-revenue">–</div></div>
+        <div class="card"><div class="label">Points out (issued)</div><div class="value" id="m-points">–</div><div class="sub" id="m-points-sub"></div></div>
+        <div class="card"><div class="label">Gift cards paid</div><div class="value" id="m-paid">–</div><div class="sub" id="m-pending"></div></div>
+        <div class="card" id="profit-card"><div class="label">Profit</div><div class="value" id="m-profit">–</div><div class="sub">revenue in − cards paid</div></div>
+      </div>
+      <h2>Devices</h2>
+      <div class="cards">
+        <div class="card"><div class="label">Total devices</div><div class="value" id="m-devices">–</div></div>
+        <div class="card"><div class="label">Opted in</div><div class="value" id="m-optedin">–</div></div>
+        <div class="card"><div class="label">Points outstanding</div><div class="value" id="m-outstanding">–</div><div class="sub" id="m-outstanding-sub"></div></div>
+      </div>
+      <p class="muted" id="m-config"></p>
+    </section>
+
+    <section id="users" class="panel" hidden>
+      <h2>Users</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Handle</th><th>Device</th><th>Opted in</th><th class="num">Revenue</th>
+              <th class="num">Points</th><th class="num">Lifetime</th><th class="num">Streak</th>
+              <th class="num">Mult.</th><th>Last active</th>
+            </tr>
+          </thead>
+          <tbody id="users-body"></tbody>
+        </table>
+      </div>
+      <div class="pager">
+        <button id="prev" type="button">Previous</button>
+        <span id="page-info"></span>
+        <button id="next" type="button">Next</button>
+      </div>
+    </section>
+
+    <section id="redemptions" class="panel" hidden>
+      <h2>Redemptions</h2>
+      <label class="filter">Show
+        <select id="status-filter">
+          <option value="pending">Pending</option>
+          <option value="approved">Approved (awaiting card)</option>
+          <option value="paid">Paid</option>
+          <option value="rejected">Rejected</option>
+          <option value="all">All</option>
+        </select>
+      </label>
+      <div id="redemption-list" class="list"></div>
+    </section>
+  </main>
+
+  <script src="/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# Node / Vercel
+node_modules/
+.vercel/
+.env
+.env.*
+!.env.example
+npm-debug.log*
+
+# Android / Gradle
+android/.gradle/
+android/build/
+android/app/build/
+android/.idea/
+android/captures/
+android/local.properties
+.gradle/
+build/
+*.iml
+gradle.properties
+
+# Signing
+*.jks
+*.keystore
+*.apk
+*.aab
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,12 @@
+# Copy to android/gradle.properties (git-ignored) and fill in.
+
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+android.useAndroidX=true
+android.nonTransitiveRClass=true
+kotlin.code.style=official
+
+# Your Vercel deployment, no trailing slash needed
+API_BASE_URL=https://YOUR-APP.vercel.app
+
+# Must equal the APP_KEY environment variable on Vercel
+APP_KEY=

@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+// Values come from android/gradle.properties (git-ignored). See gradle.properties.example.
+def prop = { String key -> (project.findProperty(key) ?: '').toString().replace('\\', '\\\\').replace('"', '\\"') }
+
+android {
+    namespace 'com.satskeeper'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.satskeeper'
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+
+        buildConfigField 'String', 'API_BASE_URL', "\"${prop('API_BASE_URL')}\""
+        buildConfigField 'String', 'APP_KEY', "\"${prop('APP_KEY')}\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+        }
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+}

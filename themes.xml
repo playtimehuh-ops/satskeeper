@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#F7931A</color>
+    <color name="ic_launcher_foreground">#1A1204</color>
+
+    <style name="Theme.SatsKeeper" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorPrimary">#F7931A</item>
+        <item name="colorPrimaryDark">#C77200</item>
+        <item name="colorAccent">#F7931A</item>
+    </style>
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SatsKeeper</string>
+
+    <!-- Consent -->
+    <string name="consent_title">Share your spare internet?</string>
+    <string name="consent_body">SatsKeeper earns money by sharing a small part of your device\'s internet connection with a partner network. In return you earn points that you can redeem for gift cards.\n\nWhat this means:\n• Other people\'s internet traffic can be routed through your connection, so it may appear to come from your IP address.\n• It uses some mobile data and battery. Use Wi-Fi if your data plan is limited.\n• Nothing is shared until you tap \"I agree\" below.\n• Your choice is saved with the date and time.\n\nYou can stop at any time with the switch on the main screen. Sharing stops immediately and the points you already earned are kept.</string>
+    <string name="consent_checkbox">I have read this and I agree to share my connection.</string>
+    <string name="consent_accept">I agree</string>
+    <string name="consent_decline">No thanks</string>
+    <string name="consent_saving">Saving your choice…</string>
+    <string name="consent_error">Could not save your choice. Check your connection and try again.</string>
+
+    <!-- Dashboard -->
+    <string name="main_points_label">Your points</string>
+    <string name="main_value_format">≈ $%1$s in gift cards</string>
+    <string name="main_streak_label">Streak</string>
+    <string name="main_streak_format">%1$d days</string>
+    <string name="main_multiplier_label">Multiplier</string>
+    <string name="main_multiplier_format">%1$s×</string>
+    <string name="main_leaderboard_title">Top earners (last 30 days)</string>
+    <string name="main_leaderboard_empty">No one on the board yet.</string>
+    <string name="main_leaderboard_row">%1$d. %2$s — %3$s pts%4$s</string>
+    <string name="main_you">  (you)</string>
+    <string name="main_redeem">Redeem gift card</string>
+    <string name="main_redeem_progress">Redeem at %1$s points</string>
+    <string name="main_redeem_pending">Redemption pending review</string>
+    <string name="main_sharing_switch">Share my connection</string>
+    <string name="main_sharing_on">Sharing is on since %1$s.</string>
+    <string name="main_sharing_off">Sharing is off. Nothing is being shared.</string>
+    <string name="main_redeem_confirm_title">Redeem points?</string>
+    <string name="main_redeem_confirm_body">Your points are spent now and a person reviews the request before a gift card is sent.</string>
+    <string name="main_redeem_ok">Redeem</string>
+    <string name="main_redeem_requested">Request sent. We will review it soon.</string>
+    <string name="main_cancel">Cancel</string>
+    <string name="main_error_format">Problem: %1$s</string>
+</resources>

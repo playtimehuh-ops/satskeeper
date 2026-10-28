@@ -1,0 +1,52 @@
+name: Android debug APK
+
+on:
+  push:
+    branches: [main]
+    paths: ['android/**', '.github/workflows/android.yml']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # Uses Gradle 8.7 directly, so no committed gradle wrapper is required.
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      # gradle.properties is git-ignored; build it from repository secrets
+      # (Settings -> Secrets and variables -> Actions): API_BASE_URL and APP_KEY.
+      - name: Create gradle.properties
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          APP_KEY: ${{ secrets.APP_KEY }}
+        run: |
+          {
+            echo "org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8"
+            echo "android.useAndroidX=true"
+            echo "android.nonTransitiveRClass=true"
+            echo "kotlin.code.style=official"
+            printf 'API_BASE_URL=%s\n' "$API_BASE_URL"
+            printf 'APP_KEY=%s\n' "$APP_KEY"
+          } > gradle.properties
+
+      - name: Build debug APK
+        run: gradle assembleDebug --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: satskeeper-debug-apk
+          path: android/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
