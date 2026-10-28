@@ -1,22 +1,29 @@
-# Secrets and local environment
+# Node / Vercel
+node_modules/
+.vercel/
 .env
 .env.*
 !.env.example
-android/gradle.properties
-android/local.properties
-local.properties
+npm-debug.log*
 
-# Gradle / Android outputs
+# Android / Gradle
+android/.gradle/
+android/build/
+android/app/build/
+android/.idea/
+android/captures/
+android/local.properties
 .gradle/
-**/.gradle/
-**/build/
+build/
+*.iml
+gradle.properties
+
+# Signing
 *.jks
 *.keystore
+*.apk
+*.aab
 
-# Node
-node_modules/
-
-# OS/editor
+# OS
 .DS_Store
 Thumbs.db
-.vscode/
