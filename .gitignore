@@ -1,0 +1,22 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+android/gradle.properties
+android/local.properties
+local.properties
+
+# Gradle / Android outputs
+.gradle/
+**/.gradle/
+**/build/
+*.jks
+*.keystore
+
+# Node
+node_modules/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
